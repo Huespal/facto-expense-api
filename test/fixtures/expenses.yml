@@ -1,0 +1,67 @@
+# Define some expense fixtures. 
+
+regular:
+  name: Càmera
+  type: regular
+  status: pending
+  hotel_name: null
+  check_in_date: null
+  check_out_date: null
+  transportation_mode: null
+  route: null
+  mileage: null
+  amount: 500
+
+travel_one:
+  name: Viatge a Girona
+  type: travel
+  status: approved
+  hotel_name: Hotel Major
+  check_in_date: 2025-01-25
+  check_out_date: 2025-03-20
+  transportation_mode: null
+  route: null
+  mileage: null
+  amount: 800
+  createdAt: 1740559381
+
+travel_two:
+  name: Viatge a Andorra
+  type: travel
+  status: approved
+  hotelName: null
+  checkInDate: null
+  checkOutDate: null
+  transportation_mode: car
+  route: road
+  mileage: null
+  amount: 850
+  createdAt: 1740559381
+
+travel_three:
+  name: Viatge a Barcelona
+  type: travel
+  status: approved
+  hotelName: null
+  checkInDate: null
+  checkOutDate: null
+  transportation_mode: null
+  route: null
+  mileage: null
+  amount: 1350
+  createdAt: 1740559381
+
+mileage_three:
+  name: Ruta dels Turons
+  type: mileage
+  status: rejected
+  hotelName: null
+  checkInDate: null
+  checkOutDate: null
+  transportation_mode: null
+  route: null
+  mileage: 5000
+  amount: 150
+  createdAt: 1740664381
+
+
