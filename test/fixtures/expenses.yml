@@ -11,6 +11,8 @@ regular:
   route: null
   mileage: null
   amount: 500
+  tenant_id: 1
+  createdAt: 1740559381
 
 travel_one:
   name: Viatge a Girona
@@ -23,6 +25,7 @@ travel_one:
   route: null
   mileage: null
   amount: 800
+  tenant_id: 1
   createdAt: 1740559381
 
 travel_two:
@@ -36,6 +39,7 @@ travel_two:
   route: road
   mileage: null
   amount: 850
+  tenant_id: 1
   createdAt: 1740559381
 
 travel_three:
@@ -49,6 +53,7 @@ travel_three:
   route: null
   mileage: null
   amount: 1350
+  tenant_id: 1
   createdAt: 1740559381
 
 mileage_three:
@@ -62,6 +67,5 @@ mileage_three:
   route: null
   mileage: 5000
   amount: 150
+  tenant_id: 1
   createdAt: 1740664381
-
-

@@ -1,0 +1,37 @@
+# Define some user fixtures. 
+
+adminEspardenya:
+  username: admin-espardenya
+  password: 1234
+  role: admin
+  tenant_id: 1
+
+adminRodamons:
+  username: admin-rodamons
+  password: 1234
+  role: admin
+  tenant_id: 2
+
+adminExcursionistes:
+  username: admin-excursionistes
+  password: 1234
+  role: admin
+  tenant_id: 3
+
+employeeEspardenya:
+  username: employee-espardenya
+  password: 1234
+  role: employee
+  tenant_id: 1
+
+employeeRodamons:
+  username: employee-rodamons
+  password: 1234
+  role: employee
+  tenant_id: 2
+
+employeeExcursionistes:
+  username: employee-excursionistes
+  password: 1234
+  role: employee
+  tenant_id: 3
