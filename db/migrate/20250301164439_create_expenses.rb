@@ -11,6 +11,7 @@ class CreateExpenses < ActiveRecord::Migration[8.0]
       t.string :route
       t.decimal :mileage
       t.decimal :amount
+      t.string :tenant_id
 
       t.timestamps
     end

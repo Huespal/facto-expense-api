@@ -1,13 +1,14 @@
 class ExpenseController < ApplicationController
   # Obtains the expense by id before 'approve' and 'reject' actions.
+  before_action :authenticate
+  before_action :set_tenant
   before_action :set_expense, only: %i[ approve reject ]
 
   # Defines the GET /expense list endpoint filtered by status and/or type.
   def index
-    # @expenses = Expense.where(params[:status])
-    @expenses = Expense.all
+    @expenses = Expense.where(tenant_id: @tenant)
 
-    # Maps the expenses array to the expected view format (including camelCase).
+    # Maps the expenses to the expected view format (including camelCase).
     # I am sure there's a more elegant solution to accomplish this.
     @output = @expenses.map { |expense| {
       id: expense.id,
@@ -36,6 +37,7 @@ class ExpenseController < ApplicationController
   # adapts model from request JSON body parameters.
   def create
     @expense = Expense.new(expense_params)
+    @expense.tenant_id = @tenant
     @expense.status = "pending"
     @amount = params[:amount].to_f
 
@@ -90,8 +92,22 @@ class ExpenseController < ApplicationController
   end
 
   private
+    def authenticate
+      @message = { error: "Unauthorized" }.to_json
+      authenticate_or_request_with_http_token("realm", @message) do |token, options|
+        # This commented code should check if the received token
+        # is the same as in the User controller. It does not work because the
+        # replaced TOKEN constant in login action is not read from here, only
+        # initial value (secret). So I just check that token exists, instead.
+        # ActiveSupport::SecurityUtils.secure_compare(token, UserController::TOKEN)
+        token != nil
+      end
+    end
     def set_expense
       @expense = Expense.find(params[:id])
+    end
+    def set_tenant
+      @tenant = request.headers["x-tenant-id"]
     end
     def expense_params
       params.expect(expense: [ :name, :type, :status ])
