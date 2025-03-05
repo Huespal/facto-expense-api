@@ -4,9 +4,16 @@ class ExpenseController < ApplicationController
   before_action :set_tenant
   before_action :set_expense, only: %i[ approve reject ]
 
-  # Defines the GET /expense list endpoint filtered by status and/or type.
+  # Defines the GET /expense list endpoint filtered by status and/or date range.
   def index
-    @expenses = Expense.where(tenant_id: @tenant)
+    @status = params[:status]
+    @from = params[:from]
+    @to = params[:to]
+
+    @expenses = Expense
+      .where(tenant_id: @tenant)
+      .by_status(@status)
+      .by_date_range(@from, @to)
 
     # Maps the expenses to the expected view format (including camelCase).
     # I am sure there's a more elegant solution to accomplish this.
@@ -95,12 +102,13 @@ class ExpenseController < ApplicationController
     def authenticate
       @message = { error: "Unauthorized" }.to_json
       authenticate_or_request_with_http_token("realm", @message) do |token, options|
-        # This commented code should check if the received token
-        # is the same as in the User controller. It does not work because the
-        # replaced TOKEN constant in login action is not read from here, only
-        # initial value (secret). So I just check that token exists, instead.
-        # ActiveSupport::SecurityUtils.secure_compare(token, UserController::TOKEN)
-        token != nil
+        # The encoded token includes the user id.
+        # There's a check that the user exists for the authorization to success.
+        if token != nil
+          @decodedToken = JWT.decode(token, UserController::TOKEN_KEY)
+          @userId = @decodedToken[0]
+          User.exists?(@userId)
+        end
       end
     end
     def set_expense
