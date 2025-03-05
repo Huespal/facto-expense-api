@@ -4,9 +4,16 @@ class ExpenseController < ApplicationController
   before_action :set_tenant
   before_action :set_expense, only: %i[ approve reject ]
 
-  # Defines the GET /expense list endpoint filtered by status and/or type.
+  # Defines the GET /expense list endpoint filtered by status and/or date range.
   def index
-    @expenses = Expense.where(tenant_id: @tenant)
+    @status = params[:status]
+    @from = params[:from]
+    @to = params[:to]
+
+    @expenses = Expense
+      .where(tenant_id: @tenant)
+      .by_status(@status)
+      .by_date_range(@from, @to)
 
     # Maps the expenses to the expected view format (including camelCase).
     # I am sure there's a more elegant solution to accomplish this.
