@@ -81,7 +81,8 @@ class ExpenseController < ApplicationController
   # Defines the PATCH /expense/:id/approve endpoint.
   # Modifies the expense's status to 'approved'.
   def approve
-    if @expense.update(status: "approved")
+    @user = User.find_by(id: @userId, tenant_id: @tenant)
+    if @user && @user.role === "admin" && @expense.update(status: "approved")
       render json: { id: @expense.id() }
     else
       render json: @expense.errors, status: :unprocessable_entity
@@ -91,7 +92,8 @@ class ExpenseController < ApplicationController
   # Defines the PATCH /expense/:id/reject endpoint.
   # Modifies the expense's status to 'rejected'.
   def reject
-    if @expense.update(status: "rejected")
+    @user = User.find_by(id: @userId, tenant_id: @tenant)
+    if @user && @user.role === "admin" && @expense.update(status: "rejected")
       render json: { id: @expense.id() }
     else
       render json: @expense.errors, status: :unprocessable_entity
@@ -107,6 +109,8 @@ class ExpenseController < ApplicationController
         if token != nil
           @decodedToken = JWT.decode(token, UserController::TOKEN_KEY)
           @userId = @decodedToken[0]
+          # This check is adding a query for each expense action
+          # which seems to be expensive, so it may be improved.
           User.exists?(@userId)
         end
       end
