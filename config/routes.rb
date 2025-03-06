@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   # Defines the (user) login route.
   post "/login", to: "user#login"
 
+  # Defines the GET user route.
+  get "/user/:id", to: "user#show"
+
   # Defines expense routes.
   get "/expense", to: "expense#index"
   post "/expense", to: "expense#create"
