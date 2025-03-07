@@ -12,7 +12,7 @@ regular:
   mileage: null
   amount: 500
   tenant_id: 1
-  createdAt: 1740559381
+  created_at: 1740559381
 
 travel_one:
   name: Viatge a Girona
@@ -26,46 +26,46 @@ travel_one:
   mileage: null
   amount: 800
   tenant_id: 1
-  createdAt: 1740559381
+  created_at: 1740559381
 
 travel_two:
   name: Viatge a Andorra
   type: travel
   status: approved
-  hotelName: null
-  checkInDate: null
-  checkOutDate: null
+  hotel_name: null
+  check_in_date: null
+  check_out_date: null
   transportation_mode: car
   route: road
   mileage: null
   amount: 850
   tenant_id: 1
-  createdAt: 1740559381
+  created_at: 1740559381
 
 travel_three:
   name: Viatge a Barcelona
   type: travel
   status: approved
-  hotelName: null
-  checkInDate: null
-  checkOutDate: null
+  hotel_name: null
+  check_in_date: null
+  check_out_date: null
   transportation_mode: null
   route: null
   mileage: null
   amount: 1350
   tenant_id: 1
-  createdAt: 1740559381
+  created_at: 1740559381
 
 mileage_three:
   name: Ruta dels Turons
   type: mileage
   status: rejected
-  hotelName: null
-  checkInDate: null
-  checkOutDate: null
+  hotel_name: null
+  check_in_date: null
+  check_out_date: null
   transportation_mode: null
   route: null
   mileage: 5000
   amount: 150
   tenant_id: 1
-  createdAt: 1740664381
+  created_at: 1740664381
