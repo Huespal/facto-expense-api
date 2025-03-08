@@ -1,7 +1,7 @@
 require "test_helper"
 
 # Expense controller tests.
-# They are commented due to I can't get them work because of this error:
+# They are commented due to the following error:
 # undefined method 'include?' for an instance of Symbol
 class ExpenseControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -14,7 +14,6 @@ class ExpenseControllerTest < ActionDispatch::IntegrationTest
 
   # Tests Expenses list obtain.
   # test "Obtain expenses list" do
-  #   omit("Unexpected error")
   #   get :index, params: {}, headers: @headers
   #   assert_response :success
   # end
