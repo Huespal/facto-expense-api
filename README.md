@@ -56,8 +56,8 @@ User:
 Expense:
 - GET /expense (list)
 - POST /expense
-- PATCH /approve
-- PATCH /reject
+- PATCH /expense/:id/approve
+- PATCH /expense/:id/reject
 
 
 Tenants are not stored into the database because there's no management required. 
@@ -115,11 +115,11 @@ To develop the Facto Expense API, work has been separated in different tasks.
   - Add user fixtures.
   - Add user tests.
 
-5. Add Expense filters 
+4. Add Expense filters 
   - Adapt expense controller and model to allow filters by status and date range.
   - Adapt expense tests.
 
-6. Review
+5. Review
   - Just a final step to review the API is working properly,
     add missing comments and refactor.
 
