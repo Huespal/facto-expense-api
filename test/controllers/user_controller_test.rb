@@ -1,7 +1,7 @@
 require "test_helper"
 
 # User controller tests.
-# They are commented due to I can't get them work because of this error:
+# They are commented due to the following error:
 # undefined method 'include?' for an instance of Symbol
 class UserControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -9,7 +9,7 @@ class UserControllerTest < ActionDispatch::IntegrationTest
     @user = users(:adminEspardenya)
   end
 
-  # # Test Log in.
+  # Test Log in.
   # test "User can log in" do
   #   post :login, params: {
   #     username: @user.username,
