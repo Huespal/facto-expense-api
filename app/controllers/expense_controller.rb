@@ -5,6 +5,8 @@ class ExpenseController < ApplicationController
   before_action :set_expense, only: %i[ approve reject ]
 
   # Defines the GET /expense list endpoint filtered by status and/or date range.
+  # Parameters checks is skipped in here for the sake of simplicity
+  # but it should not in a production ready project.
   def index
     @status = params[:status]
     @from = params[:from]
@@ -16,7 +18,6 @@ class ExpenseController < ApplicationController
       .by_date_range(@from, @to)
 
     # Maps the expenses to the expected view format (including camelCase).
-    # I am sure there's a more elegant solution to accomplish this.
     @output = @expenses.map { |expense| {
       id: expense.id,
       name: expense.name,
@@ -61,9 +62,8 @@ class ExpenseController < ApplicationController
       @expense.route = @transportation[:route]
     end
 
-    # For Mileage expense type, the amount is calculated
-    # based on something not defined in the project specification,
-    # so I just did some basic math.
+    # For Mileage expense type, the amount is decided to
+    # be 10 times the mileage quantity.
     if params[:mileage]
       @mileage = params[:mileage].to_f
       @amount = @mileage * 10
